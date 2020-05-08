@@ -34,6 +34,8 @@ Highly correllated variables were visualized and removed, a major cluster appear
 
 Since all three are energy related, and rolloff is the only one describing dispersion, rolloff was kept and the rest was removed. Since all tracks had the same duration (in seconds) tracks with higher tempo recorded more beats. While tempo is very different in reggae and disco, beats are not explanatory enough and are not functional for future model scalability.
 
+![All Features](https://github.com/chnnxyz/music-classifier/raw/master/plots/features_all.png)
+
 ```python
 X = data.drop(['filename','genre'], axis = 1)
 y = data['genre']
@@ -50,10 +52,14 @@ All models used a 5-fold shuffled train-test split (i.e. 80% train, 20% test wit
 * Accuracy: 68%
 * F1 scores over 0.8: Classical (0.94), Pop (0.83)
 
+![Unscaled Random Forest](https://github.com/chnnxyz/music-classifier/raw/master/plots/rf_unscaled.png)
+
 ### Random Forest (standard scaled features)
 
 * Accuracy: 70%
 * F1 scores over 0.8: Classical (0.91), Pop (0.83), Blues (0.81)
+
+![Scaled Random Forest](https://github.com/chnnxyz/music-classifier/raw/master/plots/rf_scaled.png)
 
 #### Random Forest Variable importance
 
@@ -61,16 +67,21 @@ RMSE and Rolloff were high importance variables, which makes sense since classic
 
 Chroma_stft should be more varied in classical music, but further data is needed to analyze
 
+![Feature Importance](https://github.com/chnnxyz/music-classifier/raw/master/plots/rf_importance.png)
+
 ### Tensorflow (FFNN: i-Dense(128)-Dropout(.25)-Dense(784)-Dropout(.25)-Dense(784)-Dropout(.25)-Dense(10,softmax), Adam)
 
 * Accuracy: 71%
 * F1 scores over 0.8: Classical (0.94), Pop (0.83)
+
+![Adam NN](https://github.com/chnnxyz/music-classifier/raw/master/plots/tf_adam.png)
 
 ### Tensorflow (FFNN: i-Dense(128)-Dropout(.25)-Dense(784)-Dropout(.25)-Dense(784)-Dropout(.25)-Dense(10,softmax), Adagrad)
 
 * Accuracy: 72%
 * F1 scores over 0.8: Classical (0.94), Jazz (0.84) Pop (0.82), Hip-Hop (0.8)
 
+![Adagrad NN](https://github.com/chnnxyz/music-classifier/raw/master/plots/tf_adagrad.png)
 
 ## Conclusions
 
